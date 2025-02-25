@@ -1,31 +1,66 @@
 {
   "name": "lsh-index",
   "version": "1.0.0",
-  "description": "Locality-Sensitive Hashing implementation for indexing vectors",
+  "description": "Locality-Sensitive Hashing implementation for indexing vectors using random projections",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "lint": "eslint src/**/*.ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "clean": "rimraf dist",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "lsh",
     "locality-sensitive-hashing",
     "clustering",
-    "similarity"
+    "similarity",
+    "nearest-neighbors",
+    "vector-search",
+    "approximate-search",
+    "random-projection",
+    "typescript"
   ],
-  "author": "Your Name",
+  "author": "Ge Li",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeLi2001/lsh-index.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GeLi2001/lsh-index/issues"
+  },
+  "homepage": "https://github.com/GeLi2001/lsh-index#readme",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.5",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
     "jest": "^29.7.0",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.0",
     "ts-jest": "^29.2.6",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
+  },
+  "dependencies": {},
+  "publishConfig": {
+    "access": "public"
   }
 }
