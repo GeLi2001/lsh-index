@@ -1,6 +1,6 @@
 {
   "name": "lsh-index",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Locality-Sensitive Hashing implementation for indexing vectors using random projections",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

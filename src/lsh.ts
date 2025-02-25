@@ -18,7 +18,7 @@ export class LSH {
   constructor(private options: LSHOptions) {
     if (options.numProjections % options.numBands !== 0) {
       throw new Error(
-        `Number of projections (${options.numProjections}) must be a multiple of number of bands (${options.numBands})`
+        `Number of projections (${options.numProjections}) must be a multiple of number of bands (${options.numBands})`,
       );
     }
     this.bucketSize = options.bucketSize || 4;
@@ -42,7 +42,7 @@ export class LSH {
 
         // Normalize to unit vector
         const magnitude = Math.sqrt(
-          vector.reduce((sum, val) => sum + val * val, 0)
+          vector.reduce((sum, val) => sum + val * val, 0),
         );
         return vector.map((v) => v / magnitude);
       });
@@ -50,7 +50,7 @@ export class LSH {
 
   private projectVector(vector: number[]): number[] {
     return this.projectionVectors.map((projVector) =>
-      vector.reduce((sum, val, idx) => sum + val * projVector[idx], 0)
+      vector.reduce((sum, val, idx) => sum + val * projVector[idx], 0),
     );
   }
 
@@ -91,7 +91,7 @@ export class LSH {
     const { vector, maxDistance } = params;
     if (vector.length !== this.options.dimensions) {
       throw new Error(
-        `Query vector must have ${this.options.dimensions} dimensions`
+        `Query vector must have ${this.options.dimensions} dimensions`,
       );
     }
 
@@ -116,7 +116,7 @@ export class LSH {
 
   private euclideanDistance(v1: number[], v2: number[]): number {
     return Math.sqrt(
-      v1.reduce((sum, val, idx) => sum + Math.pow(val - v2[idx], 2), 0)
+      v1.reduce((sum, val, idx) => sum + Math.pow(val - v2[idx], 2), 0),
     );
   }
 
@@ -134,10 +134,10 @@ export class LSH {
       buckets: this.buckets.map((bucket) =>
         Array.from(bucket.entries()).map(([key, value]) => [
           key,
-          Array.from(value)
-        ])
+          Array.from(value),
+        ]),
       ),
-      vectors: Array.from(this.vectors.entries())
+      vectors: Array.from(this.vectors.entries()),
     };
   }
 }
