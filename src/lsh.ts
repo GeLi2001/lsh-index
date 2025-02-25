@@ -16,6 +16,11 @@ export class LSH {
   private readonly rowsPerBand: number;
   private distanceMetric: (v1: number[], v2: number[]) => number;
   constructor(private options: LSHOptions) {
+    if (options.numProjections % options.numBands !== 0) {
+      throw new Error(
+        `Number of projections (${options.numProjections}) must be a multiple of number of bands (${options.numBands})`
+      );
+    }
     this.bucketSize = options.bucketSize || 4;
     this.rowsPerBand = Math.floor(options.numProjections / options.numBands);
     this.projectionVectors = this.initializeProjections();

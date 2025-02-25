@@ -45,10 +45,12 @@ Creates a new LSH instance for similarity search.
 #### options
 
 - `dimensions` (number): Number of dimensions in your input vectors
-- `numProjections` (number): Number of random projections to use
+- `numProjections` (number): Number of random projections to use. Must be a multiple of `numBands`
 - `numBands` (number): Number of bands for LSH bucketing
 - `bucketSize` (number, optional): Size of each bucket for quantization (default: 4)
 - `distanceMetric` (function, optional): Custom distance metric function (default: Euclidean)
+
+> **Note**: The `numProjections` must be a multiple of `numBands` to ensure even distribution of projections across bands. For example, if you have 5 bands, valid values for `numProjections` would be 5, 10, 15, etc.
 
 ### Methods
 
